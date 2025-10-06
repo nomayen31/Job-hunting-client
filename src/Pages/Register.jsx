@@ -1,16 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import Lottie from "lottie-react";
 import groovyWalkAnimation from "../assets/animate/Login Leady.json";
+import { AuthContext } from "../Context/AuthContext";
 
 const Register = () => {
+    const {createUser} = useContext(AuthContext)
 
     const handleRegister = (e) => {
+
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const name = form.name.value;
         const password = form.password.value;
         console.log( name,email, password);
+        // create user 
+        createUser(email, password)
+        .then(result =>{
+            console.log(result);   
+        })
+        .catch(error=>{
+            console.error(error)
+        })
+
         
     }
     //   const handleSubmit = (e) => {
